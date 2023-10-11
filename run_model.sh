@@ -1,0 +1,22 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5 python run_model2.py \
+        --model_name_or_path "google/flan-t5-large" \
+        --do_train true --do_eval false --do_predict false \
+        --dataset_name "logicreasoning/logi_glue" \
+        --dataset_config_name "folio" \
+        --output_dir "/data/data/mluo26/logi_exp/testing_model/"  \
+        --per_device_train_batch_size="4" \
+        --per_device_eval_batch_size="4" \
+        --gradient_accumulation_steps="8" \
+        --predict_with_generate \
+        --save_strategy="steps" \
+        --save_steps=10000 \
+        --text_column "input" \
+        --summary_column "answer_text" \
+        --overwrite_output_dir true \
+        --num_train_epochs 40 \
+        --seed 1234 \
+        --learning_rate 3e-04 \
+        --warmup_ratio=0.10 \
+        --max_target_length 10 \
+        --max_source_length 1024
+
